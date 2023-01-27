@@ -15,7 +15,22 @@
 using namespace std;
 
 void solve() {
+	int n, a, b, c;
+	cin >> n >> a >> b >> c;
 	
+	// find sum of x + y + z = n from ax + by + zc = n
+	int ans = 0;
+	for (int i = 0; i * a <= n; i++) {
+		for (int j = 0; i * a + j * b <= n; j++) {
+			int k = n - i * a - j * b;
+			if (k % c == 0) {
+				k /= c;
+				ans = max(ans, i + j + k);
+			}
+		}
+	}
+	
+	cout << ans;
 }
 
 int32_t main() {
